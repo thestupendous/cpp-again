@@ -4,7 +4,6 @@ using namespace std;
 #define ui unsigned int
 
 class Cust{
-    /// @brief 
     ui id;
     string name;
 
@@ -22,6 +21,7 @@ class CustInfo: public Cust{};
 int main(){
 
     CustInfo c;
+    //accessing public members of super class through derived class
     c.age = 20;
     c.printHello();
 

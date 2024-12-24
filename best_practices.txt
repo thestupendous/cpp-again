@@ -1,4 +1,4 @@
 
 - #define ko text substitute karne ❌ kyoki compiler andhere me reh jata h
     iss exmp me - #define ui unsigned -
-                iski jagah - typedef unsigned ui kar sakte hain
+                iski jagah - `typedef unsigned ui` ya better `using ui = unsigned` kar sakte hain
