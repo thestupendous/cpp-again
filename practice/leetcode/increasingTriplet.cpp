@@ -1,49 +1,60 @@
-//https://leetcode.com/problems/increasing-triplet-subsequence
-//dekha hua soln from site algo.monster
+// https://leetcode.com/problems/increasing-triplet-subsequence
+// dekha hua soln from site algo.monster
 
 #include "..\..\standardHeader.h"
 #include <vector>
-//#include<limits>
+// #include<limits>
 
-class Solution {
+class Solution
+{
 public:
-    bool increasingTriplet(vector<int>& nums) {
+    bool increasingTriplet(vector<int> &nums)
+    {
         int num;
-        bool found=false;
+        bool found = false;
 
-        int min(INT_MAX),mid(INT_MAX);
-        for (int i(0); i<nums.size(); i++){
+        int min(INT_MAX), mid(INT_MAX);
+        for (int i(0); i < nums.size(); i++)
+        {
             num = nums[i];
-            if (num>mid) {
-                found=true;
+            if (num > mid)
+            {
+                found = true;
                 break;
             }
-            if(num <= min){
+            if (num <= min)
+            {
                 min = num;
-                //mid=INT_MAX;
-            }else if (num<mid) {
+                // mid=INT_MAX;
+            }
+            else if (num < mid)
+            {
                 mid = num;
             }
         }
 
-        if(found){
-            //if (min!=INT_MAX && mid!=INT_MAX){
-                return true;
+        if (found)
+        {
+            // if (min!=INT_MAX && mid!=INT_MAX){
+            return true;
             //}
         }
         return false;
     }
 };
 
-int main(){
-    vector<int> arr({20,100,10,12,5,13});
+int main()
+{
+    vector<int> arr({20, 100, 10, 12, 5, 13});
 
-    for(auto v: arr){
-        cout<<v<<",";
-    }cout<<endl;
-    
+    for (auto v : arr)
+    {
+        cout << v << ",";
+    }
+    cout << endl;
+
     Solution solve;
-    cout<< solve.increasingTriplet(arr);
+    cout << solve.increasingTriplet(arr);
 
     return 0;
 }
