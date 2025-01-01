@@ -51,3 +51,6 @@ exec/
 *.msi
 *.apk
 *.ipa
+
+#others
+*.ini
