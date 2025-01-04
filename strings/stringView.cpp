@@ -1,3 +1,8 @@
+//string_view gets rid of the 'expensive copies' that are made each time c++
+	//strings are copied
+//string_view is read only view of a string, c string literal, or string_view
+//can be used as an argument to functions
+
 #include <iostream>
 #include <string_view> //c++17
 
@@ -11,7 +16,10 @@ int main()
 {
     std::string_view st{"Raam Raam bhai"}; // now an
                                           // std::string_view object
-    printSV(st);
+										  //
+    
+	//use of string_view - as parameter to functions
+	printSV(st);
 
     std::string_view s1 { "raam raam bhai" }; // initialize
                                               // with C-style string literal
@@ -36,7 +44,33 @@ int main()
     std::cout << sv << '\n'; // prints John
 
     std::cout << name << '\n'; // prints Alex
+							   //
+							   //
+							   //
+							   //
 
+	// constexpr works with string_view
+	constexpr std::string_view print_string{"Sabko Raam Raam!"};
+				//print_string is now symbolic constant
+	std::cout << print_string << '\n';
+				//print_string will be replaced with "Sabko Raam Raam!"
+				//at compile time
+				//
+	
+	// Modifications to string_view
+	std::string_view str{ "Peach" };
+	std::cout << str << '\n';
+
+	// Remove 1 character from the left side of the view
+	str.remove_prefix(1);
+	std::cout << "after removing 1st char from start " << str << '\n';
+
+	// Remove 2 characters from the right side of the view
+	str.remove_suffix(2);
+	std::cout <<  "after removing 2 char from end " << str << '\n';
+
+	str = "Peach"; // reset the view
+	std::cout << "after resetting string_view " << str << '\n';
 
     return 0;
 }
