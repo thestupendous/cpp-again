@@ -2,6 +2,7 @@
 del*
 .vscode/
 ~/
+.vim/
 
 
 
