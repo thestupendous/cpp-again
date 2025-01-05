@@ -3,6 +3,8 @@ del*
 .vscode/
 ~/
 .vim/
+del/
+*.out
 
 
 

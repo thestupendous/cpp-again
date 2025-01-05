@@ -1,0 +1,2 @@
+The linker will consolidate all inline function definitions for 
+an identifier into a single definition (thus still meeting the requirements of the one definition rule).
