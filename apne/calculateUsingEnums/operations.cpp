@@ -1,7 +1,7 @@
 #include "dataStructures.h"
 #include<string_view>
 
-constexpr std::string_view getError(Error e)
+std::string_view getError(Error e)
 {
 	switch (e)
 	{
