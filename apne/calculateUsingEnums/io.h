@@ -1,0 +1,1 @@
+void printObject(const Out&);

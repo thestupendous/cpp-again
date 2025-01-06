@@ -1,0 +1,16 @@
+#include "dataStructures.h"
+#include<string_view>
+
+constexpr string_view getError(Error e)
+{
+	switch (e)
+	{
+		case DIVISIONBYZERO:
+			return "trying to divide by zero";
+		case INVALIDOPERATION:
+			return "Invalid operation argument provided";
+		default:
+			return "not possible";
+	}
+}
+
