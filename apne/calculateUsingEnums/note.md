@@ -9,5 +9,13 @@ division, and don’t worry about divide by zero.
 
 
 ## compile
-- compile all 3 c++ files together
-- exmp `g++ operations.cpp io.cpp main.cpp -o calculate`
+- using cmake (automated building)
+  - create build directory (in same heirarchy as "include" directory, NOT inside it)
+  - run cmake in the new build directory (just run below commands)
+  ``` 
+    cmake ..
+    make all
+  ```
+  - then just run "calculate" executable file
+- don't like automation, compile all 3 c++ files together
+  - exmp `g++ operations.cpp io.cpp main.cpp -o calculate`
