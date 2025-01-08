@@ -8,6 +8,7 @@ new techniques and findings for making cool apps/projects in c++.
 - Coding Practices
 - Debugging
 - Namespaces
+- Cmake and Project Building
 - Object Oriented Programming *
 
 
