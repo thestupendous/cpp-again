@@ -4,7 +4,9 @@ del*
 ~/
 .vim/
 del/
+build/
 *.out
+
 
 
 
