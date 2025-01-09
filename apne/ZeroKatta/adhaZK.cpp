@@ -94,6 +94,8 @@ class Box
 		 return false;
 	 }
 
+		
+
      //return if someone won, and who won
 	//TODO :ye error codes ke sath yes/no dega
 	//matlab ek struct/class dega
@@ -101,25 +103,25 @@ class Box
 	 {
 		 //upar se niche
 		 if (( khane[0][0].zeroKatta == khane[1][0].zeroKatta &&
-				 khane[1][0].zeroKatta == khane[2][0].zeroKatta )
+				 khane[1][0].zeroKatta == khane[2][0].zeroKatta && khane[2][0].zeroKatta != khali)
 			 || ( khane[0][1].zeroKatta == khane[1][1].zeroKatta &&
-				 khane[1][1].zeroKatta == khane[2][1].zeroKatta )
+				 khane[1][1].zeroKatta == khane[2][1].zeroKatta  && khane[2][1].zeroKatta != khali)
 			 || ( khane[0][2].zeroKatta == khane[1][2].zeroKatta &&
-				 khane[1][2].zeroKatta == khane[2][2].zeroKatta )
+				 khane[1][2].zeroKatta == khane[2][2].zeroKatta  && khane[2][2].zeroKatta != khali)
 
 			//baye se daye
 			 || ( khane[1][0].zeroKatta == khane[1][1].zeroKatta &&
-				 khane[1][1].zeroKatta == khane[1][2].zeroKatta )
+				 khane[1][1].zeroKatta == khane[1][2].zeroKatta  && khane[1][2].zeroKatta != khali)
 			 || ( khane[0][0].zeroKatta == khane[0][1].zeroKatta &&
-				 khane[0][1].zeroKatta == khane[0][2].zeroKatta )
+				 khane[0][1].zeroKatta == khane[0][2].zeroKatta  && khane[0][2].zeroKatta != khali)
 			 || ( khane[2][0].zeroKatta == khane[2][1].zeroKatta &&
-				 khane[2][1].zeroKatta == khane[2][2].zeroKatta )
+				 khane[2][1].zeroKatta == khane[2][2].zeroKatta  && khane[2][2].zeroKatta != khali)
 
 			// tirchhe
 			 || ( khane[0][0].zeroKatta == khane[1][1].zeroKatta &&
-				 khane[1][1].zeroKatta == khane[2][2].zeroKatta )
-			 || ( khane[2][0].zeroKatta == khane[2][1].zeroKatta &&
-				 khane[2][1].zeroKatta == khane[2][2].zeroKatta )
+				 khane[1][1].zeroKatta == khane[2][2].zeroKatta  && khane[2][2].zeroKatta != khali)
+			 || ( khane[0][2].zeroKatta == khane[1][1].zeroKatta &&
+				 khane[1][1].zeroKatta == khane[2][0].zeroKatta  && khane[2][0].zeroKatta != khali)
 			 )
 
             {
@@ -129,6 +131,17 @@ class Box
 	 }
 
 	public:
+	 Box()
+	 {
+		for(int i(0);i<3;i++)
+		{
+			for(int j(0);j<3;j++)
+			{
+				khane[i][j].zeroKatta = khali;
+			}
+		}
+	 }
+
 	 bool isBoardFull(){
 		if ( 
 			khane[0][0].zeroKatta != khali &&
@@ -191,12 +204,16 @@ class Box
 	
 	 
 
-int main()
-{
+int main(){
 	//int score[2] = {0,0};  +bad
 	//int turn;
 	//bool userFlip=false;  +bad
 
+
+	// Box one;
+	// cout<<"d[";
+	// one.printBoard();
+	// cout<<"d]";
 
 		Coords coords;
 		Won won;
@@ -205,7 +222,9 @@ int main()
 
 		while (1)  //khel khilane ke liye
 		{
-	
+
+			khel.printBoard();
+
 			//process for turn wala player
 			coords.setNewCoords();
 			//TODO: func playerCoords(turn,coords) 
@@ -216,7 +235,6 @@ int main()
 				// move ke bad bhi jeeta ya nai, yahi func 
 				// evaluate karega, -> 3.checkWon 
 
-			khel.printBoard();
 
 			if(won.jeeta) {
 				break;
@@ -226,7 +244,9 @@ int main()
 			}
 
 			turn = (turn==0) ? 1  : 0 ;
+			;
 		}
+		khel.printBoard();
 
 		if(won.jeeta){
 			printYeWalaGameEndingText(won.vijeta);
