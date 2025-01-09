@@ -9,8 +9,8 @@
  * ZeroKatta
 */
 
-Enum options { khali, zero, katta, };
-Enum players {pehla,dusra,koiNahi};
+enum options { khali, zero, katta, };
+enum players {pehla,dusra,koiNahi};
 
 
 class ZeroKatta 
@@ -23,7 +23,7 @@ class ZeroKatta
 
 class Won{
 	public:
-		player vijeta;
+		players vijeta;
 		bool jeeta;
 		Won():jeeta(false){};
 };
@@ -169,11 +169,11 @@ int main()
 		Coords coords;
 		Won won;
 		Box khel();
-		turn = 0 // +bad
+		turn = 0; // +bad
 
 		while (1)  //khel khilane ke liye
 		{
-
+	
 			//process for turn wala player
 			coords.setNewCoords();
 			//TODO: func playerCoords(turn,coords) 
