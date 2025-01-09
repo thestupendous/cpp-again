@@ -1,4 +1,5 @@
 #include<iostream>
+using namespace std;
 /*
  * classes
  *
@@ -31,28 +32,47 @@ class Won{
 		Won():jeeta(false){};
 };
 
-constexpr int getInputInt()
+void readInputInt(int& num)
 {
-	int num;
 	std::cin>>num;
-	return num;
 }
 
 //functions 
 //printGameStartingText();  +bad
-printYeWalaGameStartingText();
+
+void printYeWalaGameStartingText()
+{
+	cout<<"welcome, game starts\n turn starts with player1\n";
+	cout<<"Enter coords: ";
+}
+	
 //printGameEndingText(won);  +bad
-printYeWalaGameEndingText(won);
+
+void printYeWalaGameEndingText(players vijeta)
+{
+	cout << "\n\nGAME OVER!\n\tPlayer" << (static_cast<int>(vijeta)+1) <<"\n\n";
+}
+
+void printDrawGameText()
+{
+	cout << "\n\nDRAW GAME!\n\tKOI NAI JEEETA (NO ONE WON!!)\n\n";
+}
+
 //wannaContinue();  +bad
 
 class Coords
 {
 	public:
 		int x,y;
-		Coords(int a,int b):x(a),b(b) {}
+		Coords()
+		{
+			x=-1;y=-1;
+		}
+		Coords(int a,int b):x(a),y(b) {}
 		void setNewCoords(){
-			x = getInputInt();
-			y = getInputInt();
+			cout<<"Enter coords: ";
+			readInputInt(x);
+			readInputInt(y);
 		}
 
 };
@@ -60,8 +80,9 @@ class Coords
 class Box
 {
 	 ZeroKatta khane[3][3]; // 3x3 matrix of zero-katta
-	 bool checkPossible(int x,int y,players khiladi) //check if placing move is correct
+	 bool checkPossible(const Coords& coords) //check if placing move is correct
 	 {
+		int x=coords.x; int y=coords.y;
 		 //checck board ke bheetar ya nahi 
 		 if(x<0 || x>2 || y<0 || y>2)
 			 return false;
@@ -76,7 +97,7 @@ class Box
      //return if someone won, and who won
 	//TODO :ye error codes ke sath yes/no dega
 	//matlab ek struct/class dega
-    void checkWon(players player,Won &won)
+    void checkAndUpdateWon(players player,Won &won)
 	 {
 		 //upar se niche
 		 if (( khane[0][0].zeroKatta == khane[1][0].zeroKatta &&
@@ -109,35 +130,60 @@ class Box
 
 	public:
 	 bool isBoardFull(){
-		if ( khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		khane[0][0] != khali &&
-		) return true;
+		if ( 
+			khane[0][0].zeroKatta != khali &&
+			khane[0][1].zeroKatta != khali &&
+			khane[0][2].zeroKatta != khali &&
+			khane[1][0].zeroKatta != khali &&
+			khane[1][1].zeroKatta != khali &&
+			khane[1][2].zeroKatta != khali &&
+			khane[2][0].zeroKatta != khali &&
+			khane[2][1].zeroKatta != khali &&
+			khane[2][2].zeroKatta != khali
+		   ) 
+		   		return true;
 		return false;
 	 }
 
-
-
-	 void placeMove(players player,int x,int y,Won& won)
+	 void printBoard()
 	 {
-		 if(!checkPossible(x,y,player)) {
+		cout<<"\n";
+		for(int i(0);i<3;i++)
+		{
+			for(int j(0);j<3;j++)
+			{
+				switch (khane[i][j].zeroKatta)
+				{
+					case zero:
+					cout<<'O';break;
+					case katta:
+					cout<<'X';break;
+					case khali:
+					cout<<'.';break;
+					default:
+					;
+				}
+				if(j<2) cout<<" | ";
+			}
+			if(i<2) cout<<"\n---------\n";
+		}
+		cout<<"\n\n";
+	 }
+
+					
+
+	 void placeMove(const int& turn,const Coords& coords,Won& won)
+	 {
+		 if(!checkPossible(coords)) {
 			 //TODO: dubara input lo
 			 return;
 		 }
 		
-		 khane[x][y].kiska = player;
-		 khane[x][y].zeroKatta = (static_cast<int>(player)==0)?zero:katta;
+		 //khane[x][y].kiska = player;
+		 khane[coords.x][coords.y].zeroKatta = (turn==0)?zero:katta;
 
-		 if(checkWon(player,won)){
-			 won.vijeta = player;
-			 jeeta = true;
-		 }
+		 players player( ( turn==0 ) ? pehla : dusra ) ;
+		 checkAndUpdateWon(player,won);
 	 }
 };
 
@@ -148,14 +194,14 @@ class Box
 int main()
 {
 	//int score[2] = {0,0};  +bad
-	int turn;
+	//int turn;
 	//bool userFlip=false;  +bad
 
 
 		Coords coords;
 		Won won;
-		Box khel();
-		turn = 0; // +bad
+		Box khel;
+		int turn = 0; // +bad
 
 		while (1)  //khel khilane ke liye
 		{
@@ -170,6 +216,8 @@ int main()
 				// move ke bad bhi jeeta ya nai, yahi func 
 				// evaluate karega, -> 3.checkWon 
 
+			khel.printBoard();
+
 			if(won.jeeta) {
 				break;
 			}
@@ -180,6 +228,13 @@ int main()
 			turn = (turn==0) ? 1  : 0 ;
 		}
 
+		if(won.jeeta){
+			printYeWalaGameEndingText(won.vijeta);
+		}
+		else
+		{
+			printDrawGameText();
+		}
 
 
 }
