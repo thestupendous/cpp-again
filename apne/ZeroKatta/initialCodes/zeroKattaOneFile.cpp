@@ -17,9 +17,9 @@ using namespace std;
 
 enum options
 {
-	khali,
-	zero,
-	katta,
+	khali,		//empty	
+	zero,		//zero
+	katta,		//X
 };
 enum players
 {
@@ -244,6 +244,20 @@ class Score
 	}
 };
 
+bool wantToContinue()
+{
+	cout << "do you want to continue playing? [y/n] : ";
+		char con;
+		cin >> con;
+	if(con=='y' || con=='Y')
+		return true;
+	else if(con=='n' || con=='N')
+		return false;
+	else
+		//technically error should be returned, but
+		return true;
+}
+
 int main()
 {
 	Score score; 
@@ -303,10 +317,8 @@ int main()
 		}
 		score.print();
 
-		cout << "do you want to continue playing? [y/n] : ";
-		char con;
-		cin >> con;
-		if(con=='n' || con=='N')
+		
+		if(! wantToContinue())
 		{
 			break;
 		}
