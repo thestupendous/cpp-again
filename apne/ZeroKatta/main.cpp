@@ -1,5 +1,6 @@
 #include<iostream>
 #include "headers.h"
+#include "Box.h"
 using std::cout;
 using std::cin;
 
@@ -9,8 +10,6 @@ int main()
 	int userFlip=0;  
 
 	int turn = 0;
-	
-
 
 	while (1)
 	{

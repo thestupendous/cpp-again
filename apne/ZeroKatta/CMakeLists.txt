@@ -14,5 +14,5 @@ Project(proj_name)
 
 # configuration types
 
-add_executable(game main.cpp sabDefs.cpp)
+add_executable(game main.cpp definitions.cpp Box.cpp)
 #target_include_directories(calculate PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

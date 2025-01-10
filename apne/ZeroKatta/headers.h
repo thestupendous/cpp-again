@@ -39,17 +39,6 @@ public:
     Coords(int a, int b) : x(a), y(b) {}
     void setNewCoords(int);
 };
-class Box
-{
-    ZeroKatta khane[3][3];
-    bool checkPossible(const Coords &);
-    void checkAndUpdateWon(players , Won &);
-public:
-    Box();
-    bool isBoardFull();
-    void printBoard();
-    void placeMove(const int &, const Coords &, Won &);
-};
 class Score
 {
     int score[2];
