@@ -1,217 +1,320 @@
-#include<iostream>
+#include <iostream>
+using namespace std;
 /*
  * classes
  *
  * Box - khel
  * Won
- * Coords 
- * Score 
- * ZeroKatta
-*/
+ * Coords
+ * Score
+ * ZeroKatta X
+ */
+// TODO: remove koiNahi
+//       remove ZeroKatta class
+//		checkWon() theek karna -chhota
+//		getline() for input
+//		turn -> bool
 
-enum options { khali, zero, katta, };
-enum players {pehla,dusra,koiNahi};
-
-
-class ZeroKatta 
+enum options
 {
-	public:
-		options zeroKatta;
+	khali,
+	zero,
+	katta,
+};
+enum players
+{
+	pehla,
+	dusra,
 };
 
-
-
-class Won{
-	public:
-		players vijeta;
-		bool jeeta;
-		Won():jeeta(false){};
+class ZeroKatta
+{
+public:
+	options zeroKatta;
 };
 
-constexpr int getInputInt()
+class Won
 {
-	int num;
-	std::cin>>num;
-	return num;
+public:
+	players vijeta;
+	bool jeeta;
+	Won() : jeeta(false) {};
+};
+
+[[maybe_unused]]
+void readInputInt(int &num)
+{
+	std::cin >> num;
 }
 
-//functions 
-//printGameStartingText();  +bad
-printYeWalaGameStartingText();
-//printGameEndingText(won);  +bad
-printYeWalaGameEndingText(won);
-//wannaContinue();  +bad
+// functions
+// printGameStartingText();  +bad
+
+void printYeWalaGameStartingText()
+{
+	cout << "welcome, game starts\n turn starts with player1\n";
+	cout << "Enter coords: ";
+}
+
+// printGameEndingText(won);  +bad
+
+void printYeWalaGameEndingText(players vijeta)
+{
+	cout << "\n\nGAME OVER!\n\tPlayer" << (static_cast<int>(vijeta) + 1) << "\n\n";
+}
+
+void printDrawGameText()
+{
+	cout << "\n\nDRAW GAME!\n\tKOI NAI JEEETA (NO ONE WON!!)\n\n";
+}
+
+// wannaContinue();  +bad
 
 class Coords
 {
-	public:
-		int x,y;
-		Coords(int a,int b):x(a),b(b) {}
-		void setNewCoords(){
-			x = getInputInt();
-			y = getInputInt();
-		}
-
-}
+public:
+	int x, y;
+	Coords():x(-1),y(-1){}
+	Coords(int a, int b) : x(a), y(b) {}
+	void setNewCoords(int turn)
+	{
+		cout << "Enter coords for player " << turn+1 << ": ";
+		int temp; cin>>temp; //1-9
+		--temp;
+		x = temp/3;
+		y = temp%3;
+		//readInputInt(x);
+		//readInputInt(y);
+	}
+};
 
 class Box
 {
-	 ZeroKatta khane[3][3]; // 3x3 matrix of zero-katta
-	 bool checkPossible(int x,int y,player khiladi) //check if placing move is correct
-	 {
-		 //checck board ke bheetar ya nahi 
-		 if(x<0 || x>2 || y<0 || y>2)
-			 return false;
+	ZeroKatta khane[3][3];					 // 3x3 matrix of zero-katta
+	bool checkPossible(const Coords &coords) // check if placing move is correct
+	{
+		int x = coords.x;
+		int y = coords.y;
+		// checck board ke bheetar ya nahi
+		if (x < 0 || x > 2 || y < 0 || y > 2)
+			return false;
 
-		 //check khali jagah
-		 if(khane[x][y].kiska == koiNahi && khane[x][y].zeroKatta==khali ) 
-			 return true;
+		// check khali jagah
+		if (khane[x][y].zeroKatta == khali)
+			return true;
 
-		 return false;
-	 }
+		return false;
+	}
 
+	// return if someone won, and who won
+	// TODO :ye error codes ke sath yes/no dega
+	// matlab ek struct/class dega
+	void checkAndUpdateWon(players player, Won &won)
+	{
+		// upar se niche
+		if ((khane[0][0].zeroKatta == khane[1][0].zeroKatta &&
+			 khane[1][0].zeroKatta == khane[2][0].zeroKatta && khane[2][0].zeroKatta != khali) ||
+			(khane[0][1].zeroKatta == khane[1][1].zeroKatta &&
+			 khane[1][1].zeroKatta == khane[2][1].zeroKatta && khane[2][1].zeroKatta != khali) ||
+			(khane[0][2].zeroKatta == khane[1][2].zeroKatta &&
+			 khane[1][2].zeroKatta == khane[2][2].zeroKatta && khane[2][2].zeroKatta != khali)
 
-	 Won checkWon() //return if someone won, and who won
-					 //TODO :ye error codes ke sath yes/no dega
-					 //matlab ek struct/class dega
-	 {
-		 //upar se niche
-		 if (( khane[0][0].zeroKatta == khane[1][0].zeroKatta &&
-				 khane[1][0].zeroKatta khane[2][0].zeroKatta )
-			 || ( khane[0][1].zeroKatta == khane[1][1].zeroKatta &&
-				 khane[1][1].zeroKatta khane[2][1].zeroKatta )
-			 || ( khane[0][2].zeroKatta == khane[1][2].zeroKatta &&
-				 khane[1][2].zeroKatta == khane[2][2].zeroKatta )
-
-			//baye se daye
-			 || ( khane[1][0].zeroKatta == khane[1][1].zeroKatta &&
-				 khane[1][1].zeroKatta khane[1][2].zeroKatta )
-			 || ( khane[0][0].zeroKatta == khane[0][1].zeroKatta &&
-				 khane[0][1].zeroKatta khane[0][2].zeroKatta )
-			 || ( khane[2][0].zeroKatta == khane[2][1].zeroKatta &&
-				 khane[2][1].zeroKatta == khane[2][2].zeroKatta )
+			// baye se daye
+			|| (khane[1][0].zeroKatta == khane[1][1].zeroKatta &&
+				khane[1][1].zeroKatta == khane[1][2].zeroKatta && khane[1][2].zeroKatta != khali) ||
+			(khane[0][0].zeroKatta == khane[0][1].zeroKatta &&
+			 khane[0][1].zeroKatta == khane[0][2].zeroKatta && khane[0][2].zeroKatta != khali) ||
+			(khane[2][0].zeroKatta == khane[2][1].zeroKatta &&
+			 khane[2][1].zeroKatta == khane[2][2].zeroKatta && khane[2][2].zeroKatta != khali)
 
 			// tirchhe
-			 || ( khane[0][0].zeroKatta == khane[1][1].zeroKatta &&
-				 khane[1][1].zeroKatta == khane[2][2].zeroKatta )
-			 || ( khane[2][0].zeroKatta == khane[2][1].zeroKatta &&
-				 khane[2][1].zeroKatta == khane[2][2].zeroKatta )
-			 )
+			|| (khane[0][0].zeroKatta == khane[1][1].zeroKatta &&
+				khane[1][1].zeroKatta == khane[2][2].zeroKatta && khane[2][2].zeroKatta != khali) ||
+			(khane[0][2].zeroKatta == khane[1][1].zeroKatta &&
+			 khane[1][1].zeroKatta == khane[2][0].zeroKatta && khane[2][0].zeroKatta != khali))
 
+		{
+			won.jeeta = true;
+			won.vijeta = player;
+		}
+	}
 
+public:
+	Box()
+	{
+		for (int i(0); i < 3; i++)
+		{
+			for (int j(0); j < 3; j++)
+			{
+				khane[i][j].zeroKatta = khali;
+			}
+		}
+	}
 
+	bool isBoardFull()
+	{
+		if (
+			khane[0][0].zeroKatta != khali &&
+			khane[0][1].zeroKatta != khali &&
+			khane[0][2].zeroKatta != khali &&
+			khane[1][0].zeroKatta != khali &&
+			khane[1][1].zeroKatta != khali &&
+			khane[1][2].zeroKatta != khali &&
+			khane[2][0].zeroKatta != khali &&
+			khane[2][1].zeroKatta != khali &&
+			khane[2][2].zeroKatta != khali)
+			return true;
+		return false;
+	}
 
+	void printBoard()
+	{
+		cout << "\n";
+		for (int i(0); i < 3; i++)
+		{
+			cout << " ";
+			for (int j(0); j < 3; j++)
+			{
+				switch (khane[i][j].zeroKatta)
+				{
+				case zero:
+					cout << 'O';
+					break;
+				case katta:
+					cout << 'X';
+					break;
+				case khali:
+					cout << '.';
+					break;
+				default:;
+				}
+				if (j < 2)
+					cout << " | ";
+			}
+			if (i < 2)
+				cout << "\n-----------\n";
+		}
+		cout << "\n\n";
+	}
 
+	void placeMove(const int &turn, const Coords &coords, Won &won)
+	{
+		if (!checkPossible(coords))
+		{
+			// TODO: dubara input lo
+			return;
+		}
 
+		// khane[x][y].kiska = player;
+		khane[coords.x][coords.y].zeroKatta = (turn == 0) ? zero : katta;
 
-
-                                                       
-
-  
-
-	public:
-	 bool isBoardFull();
-	 placeMove(players player,int x,int y,Won& won)
-	 {
-		 if(!checkPossible(x,y,player)) {
-			 //TODO: dubara input lo
-			 return;
-		 }
-		
-		 khane[x][y].kiska = player;
-		 khane[x][y].zeroKatta = (static_cast<int>(player)==0)?zero:katta;
-
-		 if(checkWon()){
-			 won.vijeta = player;
-			 jeeta = true;
-		 }
-	 }
+		players player((turn == 0) ? pehla : dusra);
+		checkAndUpdateWon(player, won);
+	}
 };
 
-#if 0 // +bad
+
+constexpr void flipTurn(int &turn)
+{
+	turn = (turn == 0) ? 1 : 0;
+}
+
 class Score
 {
-	public:  
 	int score[2];
-	Score(){
-		score[pehla]=0;
-		score[dusra]=0;
+	public:
+	Score()
+	{
+		score[0] = 0;
+		score[1] = 0;
 	}
-	void updateScore(won){
-		;
+	void update(players vijeta)
+	{
+		if (vijeta == pehla)
+			score[0]++;
+		else
+			score[1]++;
 	}
-
+	void print()
+	{
+		cout << "Scores -\n";
+		cout << "Player1 : " << score[0] << "\n";
+		cout << "Player2 : " << score[1] << "\n";
+		cout << "\n\n";
+	}
 };
-#endif
-	
-	 
 
 int main()
 {
-	//int score[2] = {0,0};  +bad
-	int turn;
-	//bool userFlip=false;  +bad
+	Score score; 
+	int userFlip=0;  
 
-#if 0  //keval ek game
-
-	printGameStartingText();
-	// andrew player 1, jhandrew player2
+	int turn = 0;
 	
-	while (1)  //kai sare khel
-	{ 
-		turn = (userFlip)?1:0;
-		Coords coords;
-		Won won;
-		Box khel();
-		printYeWalaGameStartingText();
-		// is bar player1 ya 2 pehle khelega
-#endif
-		Coords coords;
-		Won won;
-		Box khel();
-		turn = 0; // +bad
 
-		while (1)  //khel khilane ke liye
+
+	while (1)
+	{
+		turn=userFlip;
+		Coords coords;
+		Won won;
+		Box khel; // +bad
+		cout << "\n\nNEW GAME\n" ;
+
+		while (1) // khel khilane ke liye
 		{
-	
-			//process for turn wala player
-			coords.setNewCoords();
-			//TODO: func playerCoords(turn,coords) 
-					//jiska turn ho wahi input de !
 
-			khel.placeMove(turn,coords,won);
-				// matlab 1.checksahi moove, 2.placeMove
-				// move ke bad bhi jeeta ya nai, yahi func 
-				// evaluate karega, -> 3.checkWon 
+			khel.printBoard();
 
-			if(won.jeeta) {
+			// process for turn wala player
+			coords.setNewCoords(turn);
+			// TODO: func playerCoords(turn,coords)
+			// jiska turn ho wahi input de !
+
+			khel.placeMove(turn, coords, won);
+			// matlab 1.checksahi moove, 2.placeMove
+			// move ke bad bhi jeeta ya nai, yahi func
+			// evaluate karega, -> 3.checkWon
+
+			if (won.jeeta)
+			{
 				break;
 			}
-			if (khel.isBoardFull()){
+			if (khel.isBoardFull())
+			{
 				break;
 			}
 
-			turn = (turn==0) ? 1  : 0 ;
+			turn = (turn == 0) ? 1 : 0;
+			;
 		}
 
-#if 0  //keval ek game
-		// iske bajaye sab ek function me
-		printYeWalaGameEndingText(won)
-		updateScore(won); // yaha par
+		khel.printBoard();
 
-		if(!wannaContinue()){
-			printByeBye();
+		if (won.jeeta)
+		{
+			printYeWalaGameEndingText(won.vijeta);
+			score.update(won.vijeta);
+			
+		}
+		else
+		{
+			printDrawGameText();
+		}
+		score.print();
+
+		cout << "do you want to continue playing? [y/n] : ";
+		char con;
+		cin >> con;
+		if(con=='n' || con=='N')
+		{
 			break;
 		}
 
-
-
-		userFlip = !userFlip;
+		flipTurn(userFlip);
 	}
-#endif
 
+	cout << "-----------------------------Thanks for playing-----------------------------\n";
+
+	return 0;
 }
-
-
-
-

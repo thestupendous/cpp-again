@@ -1,3 +1,0 @@
-/home/anand/pro/cpp/cpp-again/cmakeLearning/projHeader/build/CMakeFiles/hello.dir
-/home/anand/pro/cpp/cpp-again/cmakeLearning/projHeader/build/CMakeFiles/edit_cache.dir
-/home/anand/pro/cpp/cpp-again/cmakeLearning/projHeader/build/CMakeFiles/rebuild_cache.dir
