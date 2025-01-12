@@ -1,0 +1,57 @@
+// example.fbs 
+namespace MyGame; 
+table Monster 
+{ 
+	pos:Vec3; 
+	mana:short = 150; 
+	hp:short; 
+	name:string; 
+	} 
+
+table Vec3 
+{ 
+	x:float; 
+	y:float; 
+	z:float; 
+} 
+root_type Monster; 
+
+
+/*
+class Book
+{
+    //const ui id;
+    static ui id;
+    string name;
+    string description;
+    ui count;
+    ui moolya;      //price
+
+
+table Book
+{
+	name:string,
+
+
+
+
+
+    public:
+    Book()
+    {
+
+    }
+    static ui generateID(){
+        if (id==0){
+            id=5000;
+        }
+        return id++;
+    }
+    add(string_view name,string_view description,const ui count, const ui moolya);
+    update(const ui id);
+ 
+};
+
+
+
+*/

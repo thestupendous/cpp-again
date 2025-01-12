@@ -1,0 +1,7 @@
+namespace custData;
+table Cust{
+	name:string;
+	mobile:ulong;
+	kharcha:double;
+}
+root_type  Cust;
