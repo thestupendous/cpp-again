@@ -13,7 +13,7 @@ int main()
 
   {
     cereal::XMLOutputArchive oarchiveBin(file1); // Create an output archive
-    cereal::XMLOutputArchive oarchiveJson(file1json); // Create an output archive
+    cereal::JSONOutputArchive oarchiveJson(file1json); // Create an output archive
 //    cereal::XMLOutputArchive oarchiveXML(ss); // Create an output archive
 
     MeriClass m1(3,4,1000), m2(-123,-10,-40), m3;
@@ -31,7 +31,7 @@ int main()
 
   {
     cereal::XMLInputArchive iarchive(file2); // Create an input archive
-    cereal::XMLInputArchive iarchiveJson(file2json); // Create an input archive
+    cereal::JSONInputArchive iarchiveJson(file2json); // Create an input archive
 
     MeriClass m4, m5, m6;
     iarchive(m4, m5, m6); // Read the data from the archive

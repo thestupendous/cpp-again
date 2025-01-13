@@ -4,6 +4,7 @@
 - [main link](https://uscilab.github.io/cereal) 
 
 ## Versioning
+If you have strings in your data, import this header `#include <cereal/types/string.hpp>`
 
 - use this macro for defining version 
   `CEREAL_CLASS_VERSION`

@@ -1,0 +1,17 @@
+{
+    "value0": {
+        "value0": "pro",
+        "value1": 99999999,
+        "value2": 99.99
+    },
+    "value1": {
+        "value0": "noob",
+        "value1": 1000001,
+        "value2": 101.101
+    },
+    "value2": {
+        "value0": "",
+        "value1": 0,
+        "value2": 0.0
+    }
+}
