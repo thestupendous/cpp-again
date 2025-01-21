@@ -1,12 +1,13 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int readNumber(){
-    int num;
-    std::cin>>num;
-    return num;
+int readNumber() {
+  int num;
+  std::cin >> num;
+  return num;
 }
 
-void writeAnswer(int num){
-    std::cout<<num<<"\n";
+void writeAnswer(int num) {
+  std::cout << num << "\n";
+  return 0;
 }

@@ -2,7 +2,6 @@
 // abhi `static_cast<int> x` ka use karke typecasting karte hain
 
 #include <iostream>
-
 void print(int x)
 {
     std::cout << x << '\n';
