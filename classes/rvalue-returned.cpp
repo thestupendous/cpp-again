@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <string_view>
-using std::cout,std::string;
+using std::cout, std::string;
 
 class Employee {
   std::string name;
@@ -9,33 +9,27 @@ class Employee {
 public:
   void setName(std::string_view nameI) { name = nameI; }
   const std::string &getName() const { return name; }
- ~Employee();
+  ~Employee();
 };
-Employee::~Employee(){
-  cout << "DESTROYED " << name << "\n";
-}
+Employee::~Employee() { cout << "DESTROYED " << name << "\n"; }
 
-Employee createEmployee(std::string_view nameI)
-{
+Employee createEmployee(std::string_view nameI) {
   Employee a;
   a.setName(nameI);
   return a;
 }
 
-int main(){
-
+int main() {
   cout << createEmployee("one"s).getName() << '\n';
 
-  const std::string& ref { createEmployee("two"s).getName() };
+  const std::string &ref{createEmployee("two"s).getName()};
   cout << ref << '\n';
 
-  std::string val {createEmployee("three"s).getName()} ;
-  cout << val <<'\n';
+  std::string val{createEmployee("three"s).getName()};
+  cout << val << '\n';
 
-  int k=93;
-  cout << val << k <<'\n';
-  
+  int k = 93;
+  cout << val << k << '\n';
 
   return 0;
 }
-
