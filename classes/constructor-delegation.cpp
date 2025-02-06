@@ -1,29 +1,41 @@
 #include <iostream>
-#include <string>
-#include <string_view>
 
-class Employee
-{
+class Box {
 private:
-    std::string m_name { "???" };
-    int m_id { 0 };
+    double length;
+    double width;
+    double height;
 
 public:
-    Employee(std::string_view name)
-        : Employee{ name, 0 } // delegate initialization to Employee(std::string_view, int) constructor
-    {
+    // Constructor with all parameters
+    Box(double l, double w, double h) : length(l), width(w), height(h) {
+        std::cout << "Constructor with three parameters called." << std::endl;
     }
 
-    Employee(std::string_view name, int id)
-        : m_name{ name }, m_id { id } // actually initializes the members
-    {
-        std::cout << "Employee " << m_name << " created\n";
+    // Constructor delegating to the three-parameter constructor
+    Box(double size) : Box(size, size, size) {
+        std::cout << "Constructor with one parameter called." << std::endl;
     }
 
+    // Default constructor delegating to the one-parameter constructor
+    Box() : Box(1.0) {
+        std::cout << "Default constructor called." << std::endl;
+    }
+
+    void printDimensions() {
+        std::cout << "Length: " << length << ", Width: " << width << ", Height: " << height << std::endl;
+    }
 };
 
-int main()
-{
-    Employee e1{ "Paramjeet" };
-    Employee e2{ "Alexa", 22 };
+int main() {
+    Box defaultBox; // This will call the default constructor
+    defaultBox.printDimensions();
+
+    Box cube(5.0); // This will call the one-parameter constructor, which delegates to three-parameter
+    cube.printDimensions();
+
+    Box customBox(2.0, 3.0, 4.0); // This directly calls the three-parameter constructor
+    customBox.printDimensions();
+
+    return 0;
 }
