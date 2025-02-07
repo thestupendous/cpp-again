@@ -15,6 +15,11 @@ int main() {
   }
 
   cout << '\n';
+  vector <int> b {1,2};
+  b.insert(b.end(),a.begin(),a.end());
+  for (auto i{b.begin()} ; i != b.end() ; i++ ) {
+    cout << *i << ',';
+  }
 
   return 0;
 }
