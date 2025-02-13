@@ -7,7 +7,6 @@
         One object's member function can access private data members of
         another object of the same class!
 */
-
 class Kid {
 private:
   std::string name;
