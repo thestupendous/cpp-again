@@ -1,6 +1,25 @@
 #include <cstdint>
 #include <iostream>
 #include <limits>
+#include<vector>
+using namespace std;
+
+void maxMin(const vector<int> &vec){
+	int max{std::numeric_limits<int>::min()};
+	int min{std::numeric_limits<int>::max()};
+
+
+}
+
+
+int main() {
+	vector<int> vec;
+	
+	maxMin(vec);
+
+	return 0;
+}
+
 using std::cout;
 
 int main(){
