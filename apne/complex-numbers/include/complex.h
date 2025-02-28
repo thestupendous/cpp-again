@@ -5,12 +5,12 @@
 
 class Complex {
 public:
-	int64_t real;
-	int64_t imag;
+	double real;
+	double imag;
 
 public:
 	Complex(){}
-	Complex(int64_t r,int64_t i=0):
+	Complex(double r,double i=0):
 		real{r},imag{i}
 	{}
 
