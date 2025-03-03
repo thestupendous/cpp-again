@@ -1,5 +1,5 @@
 //#include <cereal/archives/json.hpp>
-#include "Cust.h"
+#include "customer.h"
 #include <cereal/archives/binary.hpp>
 #include <cereal/types/string.hpp>
 #include<fstream>

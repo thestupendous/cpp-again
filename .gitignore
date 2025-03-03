@@ -7,10 +7,6 @@ del/
 build/
 *.out
 
-
-
-
-
 #exclusions for compressed files
 *.rar
 *.7z

@@ -1,3 +1,0 @@
-/home/anand/pro/cpp/cpp-again/apne/calculateUsingEnums/build/CMakeFiles/calculate.dir
-/home/anand/pro/cpp/cpp-again/apne/calculateUsingEnums/build/CMakeFiles/edit_cache.dir
-/home/anand/pro/cpp/cpp-again/apne/calculateUsingEnums/build/CMakeFiles/rebuild_cache.dir

@@ -1,4 +1,4 @@
-#include "Cust.h"
+#include "customer.h"
 
 
 void Cust::add(string_view name_,const uli mobile_,const double kharcha_)
