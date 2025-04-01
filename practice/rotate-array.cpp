@@ -12,7 +12,8 @@
 #include <vector>
 #include <cstdint>
 using std::cout;
-void print(std::vector<int> &arr) {
+
+void print(const std::vector<int> &arr) {
 	for (auto i {arr.begin()} ; i!=arr.end() ; i++ ) {
 		std::cout << *i << ',';
 	}
