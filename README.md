@@ -10,27 +10,27 @@ Note: Some parts of comments in a few of the codes will have hindi language.
 - Debugging
 - Namespaces
 - Cmake and Project Building
-- Object Oriented Programming *
+- \*Object Oriented Programming
 
 ## Datastructures
 - array
 - linked list
 - stack
 - queue
-- tree
-- heaps
-- graph
-- trie
-- seg tree
-- fenwick tree
+- \*tree
+- \*heaps
+- \*graph
+- \*trie
+- \*seg tree
+- \*fenwick tree
 
 Algos
 - searching
 - sorting
 - recursion
 - greedy algo
-- dynamic prog
-- backtracking
+- \*dynamic prog
+- \*backtracking
 
 
 ## Appendix
