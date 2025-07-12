@@ -1,9 +1,0 @@
-todo prog
-
-. stack - *done
-. q
-. ll - single *dd, double *dd
-. tree
-. bst
-. heap
-. other high level ds
