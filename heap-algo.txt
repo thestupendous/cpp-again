@@ -1,0 +1,13 @@
+insert
+normally
+  . *assuming there is some content in it
+  . add to designated place
+  . move up accordingly
+
+array heap logic (max heap)
+  . *assuming there is some content in it
+	. add element to heap[last]
+	. while not reached up do following
+	. if parent exists, if parent is less, swap with parent,
+	     move pointer to parent
+	. done
