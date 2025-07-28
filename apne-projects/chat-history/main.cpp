@@ -1,7 +1,6 @@
 // working:
 //         - chatsInOrder() - parser and printer of 
 //            collective chats of two users
-// TODO full name support is pending, working with just first name rn
 // TODO modify chatID to have real time time-stamps with each messages
 //      easily readable and retrievable for forensics etc.
 
@@ -77,8 +76,8 @@ public:
 int main(int num, char **arr) {
 	
 	// ---------- get and set users ----------------
-	Users u1 {"anand","an",1};
-	Users u2 {"Shimla","sh",2};
+	Users u1 {"anand shrivastav","an",1};
+	Users u2 {"Shimla hp","sh",2};
 
 	// ---------- create chat objs -----------------
 	ChatsById u1Chats{u1.uid};
