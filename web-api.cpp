@@ -1,6 +1,7 @@
 #include "ncurses.h"
 #include <string>
 #include <unordered_map>
+using std::string;
 
 // HTTP client using GDB library
 char unitChar = 0x40; // ASCII control character

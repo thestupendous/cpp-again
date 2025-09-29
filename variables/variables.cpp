@@ -39,7 +39,7 @@ int main()
     // another case of an overflow
     //  assume 4 byte integers
     int j{2'147'483'647}; // the maximum value of a 4-byte signed integer
-    std::cout << x << '\n';
+    std::cout << j << '\n';
 
     j = j + 1; // integer overflow, undefined behavior
     std::cout << j << '\n';
