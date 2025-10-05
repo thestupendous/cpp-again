@@ -5,16 +5,13 @@
 #include <string>
 using std::string,std::to_string;
 
-int i=0;
+int i=1;
 // Callback to change label
 void change_label_cb(Fl_Widget* w, void* data) {
     Fl_Box* box = (Fl_Box*)data;        // The label widget
-		// const string labelString = to_string(i++) + " bar";
-    // box->label(labelString.c_str);      // Update label
-		int i=1;
 		string c = string("naya naam ") + (to_string(i++));
-		const char *a = c.c_str();
-    box->label(a);      // Update label
+		// const char *a = c.c_str();
+    box->label(c.c_str());      // Update label
     box->redraw();                      // Force redraw to see the change
 }
 
