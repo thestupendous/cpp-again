@@ -1,3 +1,10 @@
+/* operations provided
+ *  - add new node
+ *  - traverse inorder
+ *  - delete a node
+ *  - print children of a node 
+*/
+
 #include<iostream>
 #include<string>
 using std::cout,std::string,std::to_string;
