@@ -1,11 +1,16 @@
+/*
+ * Minheap (?)
+ * vector to hold heap, last index var to hold last element location
+*/
+
 #include<iostream>
 #include<vector>
 using std::cout, std::vector;
 
 void swap(int &a,int &b) {
 	int t = a;
-	a= b;
-	b= t;
+	a = b;
+	b = t;
 }
 
 class Heap {
@@ -14,11 +19,12 @@ class Heap {
 
 public:
 
-	Heap(): last(0), heapVec(1)  {}
+	Heap(): last{0}, heapVec{1}  {}
 	Heap(vector<int> &vec) {
 		if (heapVec.size() == 0) {
 			heapVec.push_back(0);
 			last = 0;
+			return;
 		}
 		//heapVec.insert(heapVec.end(),vec.begin(),vec.end());
 		cout << "  before\n";
@@ -34,9 +40,9 @@ public:
 
 		if (last==0) {
 			cout << "empty heap, pushing and exiting.\n";
-			last = 1;
-			heapVec[++last] = value;
-			return;
+			last = 2;
+			heapVec.push_back(value);
+			cout << "Log " << "1 done" << "\n";
 		} else {
 			++last;
 			heapVec.push_back(value);
@@ -74,6 +80,12 @@ int main() {
 	h1.print();
 	cout << "pushing 200\n";
 	h1.push(200);
+	h1.print();
+	h1.push(300);
+	h1.print();
+	h1.push(400);
+	h1.print();
+	h1.push(100);
 	h1.print();
 
 	return 0;
