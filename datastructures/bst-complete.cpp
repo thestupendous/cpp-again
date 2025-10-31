@@ -81,7 +81,7 @@ void deleteNode(Tree* &head, int val) {
 	}
 #endif
 
-	// find val
+	// find node to delete
 	Tree *ptr = head,*parent = head;
 	bool goLeft{false}, goRight{false};
 	while (ptr != nullptr) {
