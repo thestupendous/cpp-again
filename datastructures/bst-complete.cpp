@@ -7,7 +7,8 @@
 
 #include<iostream>
 #include<string>
-using std::cout,std::string,std::to_string;
+#include<vector>
+using std::cout,std::string,std::to_string,std::vector;
 // tree = bst
 
 struct Tree {
@@ -107,9 +108,11 @@ void deleteNode(Tree* &head, int val) {
 		// it is a leaf node
 		cout << "found a leaft node to delete\n";
 		if (goLeft) {
+			delete parent->left;
 			parent->left = nullptr;
 			return;
 		} else if (goRight) {
+			delete parent->right;
 			parent->right = nullptr;
 			return;
 		} else {
@@ -119,27 +122,32 @@ void deleteNode(Tree* &head, int val) {
 	}
 
 
-	// right subtree exists?
+	// right subtree doesn't exist
 	if (ptr->right == nullptr) {
+		Tree* temp = ptr;
 		ptr = ptr->left;
+		delete temp;
 		return;
-	} else {
+	} else { // right subtree does exist
 	// find correct candidate in right subtree
-		Tree *minimum = ptr->right, *minimumParent;
+		Tree *minimum {ptr->right}, *minimumParent;
 		while (minimum -> left != nullptr) {
 			minimumParent = minimum;
 			minimum = minimum->left;
 		}
-		Tree* candidate = minimum;
+		Tree* candidate{minimum};
 		// minimum -> left = ptr->left;
 		ptr->data = minimum->data;
 
 		// actual deletion
 		cout << "deleted, replaced by " << minimum->data << '\n';
+		Tree* toDelete = minimum->left;
 		if (minimum->right != nullptr) {
 			minimumParent->left = minimum->right;
+			delete toDelete;
 		} else {
 			minimumParent->left = nullptr;
+			delete toDelete;
 		}
 	}
 
@@ -171,25 +179,48 @@ void children(const Tree &node,const int & val) {
 
 int main() {
 	Tree *head = nullptr;
+	vector<int> insertOrder;
+	insertOrder.push_back(10);
 	addNode(head,10);
+	insertOrder.push_back(5);
 	addNode(head,5);
+	insertOrder.push_back(1);
 	addNode(head,1);
+	insertOrder.push_back(7);
 	addNode(head,7);
+	insertOrder.push_back(100);
 	addNode(head,100);
+	insertOrder.push_back(61);
 	addNode(head,61);
+	insertOrder.push_back(110);
 	addNode(head,110);
+	insertOrder.push_back(23);
 	addNode(head,23);
+	insertOrder.push_back(70);
 	addNode(head,70);
+	insertOrder.push_back(16);
 	addNode(head,16);
+	insertOrder.push_back(55);
 	addNode(head,55);
+	insertOrder.push_back(66);
 	addNode(head,66);
+	insertOrder.push_back(87);
 	addNode(head,87);
+	insertOrder.push_back(43);
 	addNode(head,43);
+	insertOrder.push_back(60);
 	addNode(head,60);
+
+
+	cout<<">> Insert order: [";
+	for(auto i: insertOrder) {
+		cout << i << ',';
+	} cout << "]\n";
 
 	traverse(head);
 	cout<<'\n';
 
+	cout<<">>deleting 10\n";
 	deleteNode(head,10);
 	traverse(head);
 	cout<< '\n';

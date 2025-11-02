@@ -1,4 +1,4 @@
-
+// insert and traverse only
 #include<iostream>
 using namespace std;
 
