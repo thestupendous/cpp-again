@@ -13,16 +13,21 @@ Note: Some parts of comments in a few of the codes will have hindi language.
 - \*Object Oriented Programming
 
 ## Datastructures
-- array
-- linked list
-- stack
-- queue
-- \*tree
-- \*heaps
-- \*graph
-- \*trie
-- \*seg tree
-- \*fenwick tree
+- [x] array
+- [x] linked list
+- [x] stack
+- [x] queue
+- [x] tree
+- [ ] avl tree
+- [ ] red black tree
+- [ ] b tree
+- [ ] b- tree
+- [x] heaps
+- [x] graph
+- [x] dequeue - usage done
+- [ ] \*trie
+- [ ] \*seg tree
+- [ ] \*fenwick tree
 
 Algos
 - searching
@@ -34,6 +39,7 @@ Algos
 
 
 ## Appendix
+ - dequeue - [This YT link](https://www.youtube.com/watch?v=DfljaUwZsOk)
 
 '*' - to be finished
 
